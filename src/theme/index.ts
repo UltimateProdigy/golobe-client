@@ -1,4 +1,37 @@
-export const theme = {
+// Define type safety for our theme structure
+export interface ThemeColors {
+	bg: string;
+	hover: string;
+	text: string;
+	border: string;
+	light: string;
+	dark: string;
+}
+
+export interface Theme {
+	primary: ThemeColors;
+	secondary: ThemeColors;
+	success: ThemeColors;
+	error: ThemeColors;
+}
+
+export interface ColorShades {
+	100: string;
+	200: string;
+	300: string;
+	400: string;
+	500: string;
+	600: string;
+	700: string;
+	800: string;
+	900: string;
+}
+
+export interface Colors {
+	primary: ColorShades;
+}
+
+export const theme: Theme = {
 	primary: {
 		bg: "bg-blue-500",
 		hover: "hover:bg-blue-600",
@@ -33,7 +66,7 @@ export const theme = {
 	},
 };
 
-export const colors = {
+export const colors: Colors = {
 	primary: {
 		100: "#f1f9f6",
 		200: "#e3f3ee",
@@ -48,19 +81,25 @@ export const colors = {
 };
 
 // Utility function to combine theme classes with custom classes
-export const cx = (...classes) => classes.filter(Boolean).join(" ");
+export const cx = (...classes: (string | undefined | null | false)[]) =>
+	classes.filter(Boolean).join(" ");
+
+// Define types for variant options
+export type ColorVariant = keyof Theme;
+export type ButtonVariant = "solid" | "outline" | "ghost";
+export type AlertVariant = "solid" | "soft";
 
 // Common component variants
 export const variants = {
 	button: {
-		solid: (color = "primary") =>
+		solid: (color: ColorVariant = "primary") =>
 			cx(
 				theme[color].bg,
 				theme[color].hover,
 				"text-white px-4 py-2 rounded-lg",
 				"transition-colors duration-200"
 			),
-		outline: (color = "primary") =>
+		outline: (color: ColorVariant = "primary") =>
 			cx(
 				"bg-transparent",
 				theme[color].text,
@@ -70,7 +109,7 @@ export const variants = {
 				"border px-4 py-2 rounded-lg",
 				"transition-colors duration-200"
 			),
-		ghost: (color = "primary") =>
+		ghost: (color: ColorVariant = "primary") =>
 			cx(
 				"bg-transparent",
 				theme[color].text,
@@ -80,9 +119,9 @@ export const variants = {
 			),
 	},
 	alert: {
-		solid: (color = "primary") =>
+		solid: (color: ColorVariant = "primary") =>
 			cx(theme[color].bg, "text-white p-4 rounded-lg"),
-		soft: (color = "primary") =>
+		soft: (color: ColorVariant = "primary") =>
 			cx(theme[color].light, theme[color].text, "p-4 rounded-lg"),
 	},
 };

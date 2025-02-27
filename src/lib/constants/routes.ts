@@ -4,4 +4,8 @@ export const routes = {
 		register: "/auth/register",
 		login: "/auth/login",
 	},
+	hotels: {
+		index: "/hotels",
+		details: "/hotels/:id",
+	},
 };

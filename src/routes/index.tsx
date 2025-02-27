@@ -1,4 +1,4 @@
-import { lazy, ReactNode, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { routes } from "../lib/constants/routes";
 import { Route } from "react-router-dom";
 import Loader from "../components/loader";
@@ -6,6 +6,8 @@ import Loader from "../components/loader";
 const Home = lazy(() => import("../pages/home/index"));
 const Login = lazy(() => import("../pages/auth/login/index"));
 const Register = lazy(() => import("../pages/auth/register/index"));
+const Hotels = lazy(() => import("../pages/hotels/index"));
+const HotelDetails = lazy(() => import("../pages/hotels/[id]"));
 
 const golobe = [
 	{
@@ -19,6 +21,14 @@ const golobe = [
 	{
 		path: routes.auth.register,
 		element: <Register />,
+	},
+	{
+		path: routes.hotels.index,
+		element: <Hotels />,
+	},
+	{
+		path: routes.hotels.details,
+		element: <HotelDetails />,
 	},
 ];
 
