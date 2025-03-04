@@ -1,7 +1,9 @@
+import Hero from "../../features/home/hero";
+
 export default function Home() {
 	return (
 		<div>
-			<p>Home</p>
+			<Hero />
 		</div>
 	);
 }
