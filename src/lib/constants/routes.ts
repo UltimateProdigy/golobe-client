@@ -8,4 +8,8 @@ export const routes = {
 		index: "/hotels",
 		details: "/hotels/:id",
 	},
+	flights: {
+		index: "/flights",
+		details: "/flights/:id",
+	},
 };
