@@ -7,7 +7,8 @@ import {
 	Plus,
 	Send,
 } from "lucide-react";
-import { Dropdown, Select, Input } from "antd";
+import { Select, Input } from "antd";
+import { Button } from "@chakra-ui/react";
 
 const items = [
 	{
@@ -73,10 +74,10 @@ export const FlightComponent = () => {
 					<Plus />
 					Add Promo Code
 				</button>
-				<button className="flex px-4 py-2 bg-[#8DD3BB] gap-2 rounded cursor-pointer">
+				<Button display="flex" gap={2} bg="#8DD3BB">
 					<Send />
 					Show Flights
-				</button>
+				</Button>
 			</div>
 		</div>
 	);
@@ -131,10 +132,10 @@ export const HotelComponent = () => {
 					<Plus />
 					Add Promo Code
 				</button>
-				<button className="flex px-4 py-2 bg-[#8DD3BB] gap-2 rounded cursor-pointer">
+				<Button display="flex" gap={2} bg="#8DD3BB">
 					<Send />
 					Show Hotels
-				</button>
+				</Button>
 			</div>
 		</div>
 	);

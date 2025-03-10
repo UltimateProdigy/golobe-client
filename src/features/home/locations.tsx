@@ -1,5 +1,6 @@
 import { Send } from "lucide-react";
 import { locations, banners } from "./data";
+import { Button } from "@chakra-ui/react";
 export default function Locations() {
 	return (
 		<div className="mt-[250px] mx-14">
@@ -37,10 +38,10 @@ export default function Locations() {
 					>
 						<p className="font-bold text-4xl">{banner.name}</p>
 						<p>{banner.desc}</p>
-						<button className="flex px-4 py-2 bg-[#8DD3BB] gap-2 rounded text-black cursor-pointer">
+						<Button display='flex' gap={2} bg='#8DD3BB'>
 							<Send />
 							{banner.cta}
-						</button>
+						</Button>
 					</div>
 				))}
 			</div>
