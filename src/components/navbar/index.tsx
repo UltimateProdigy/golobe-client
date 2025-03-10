@@ -2,7 +2,7 @@ import { BedDoubleIcon, PlaneIcon } from "lucide-react";
 import { routes } from "../../lib/constants/routes";
 import Logo from "../icons/logo";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@headlessui/react";
+import { Button } from "@chakra-ui/react";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -56,15 +56,13 @@ export default function Navbar() {
 			/>
 
 			<div className="flex gap-10 items-center">
-				<Button
-					onClick={() => navigate(routes.auth.login)}
-					className="cursor-pointer"
-				>
+				<Button onClick={() => navigate(routes.auth.login)} bg="white">
 					Login
 				</Button>
 				<Button
 					onClick={() => navigate(routes.auth.register)}
-					className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer"
+					bg="black"
+					color="white"
 				>
 					Signup
 				</Button>
