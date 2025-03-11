@@ -31,7 +31,7 @@ export default function Navbar() {
 
 	return (
 		<div className="flex justify-between items-center px-14 py-6">
-			<div className="flex gap-6 items-center">
+			<div className="flex gap-8 items-center">
 				{links.map((link) => (
 					<div
 						key={link.id}
@@ -43,7 +43,7 @@ export default function Navbar() {
 						onClick={() => handleClick(link.id, link.route)}
 					>
 						<div>
-							<link.icon fill="black" />
+							<link.icon />
 						</div>
 						<p>{link.name}</p>
 					</div>
