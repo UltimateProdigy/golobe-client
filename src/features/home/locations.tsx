@@ -18,7 +18,7 @@ export default function Locations() {
 			</div>
 			<div className="grid grid-cols-3 gap-8">
 				{locations.map((location) => (
-					<div className="flex rounded-lg p-2 items-center gap-4 shadow-lg cursor-pointer mb-6">
+					<div className="flex rounded-lg p-2 items-center gap-4 shadow-lg cursor-pointer mb-6 hover:scale-105">
 						<img src="/src/assets/city.png" alt="location" />
 						<div>
 							<div className="flex gap-4 mb-2">
