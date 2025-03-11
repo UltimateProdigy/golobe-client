@@ -12,9 +12,9 @@ export default function Locations() {
 						destinations
 					</p>
 				</div>
-				<button className="border border-green-300 px-4 rounded-lg h-10 cursor-pointer">
-					See more places
-				</button>
+				<Button border="1px solid green" bg="transparent">
+					See More Places
+				</Button>
 			</div>
 			<div className="grid grid-cols-3 gap-8">
 				{locations.map((location) => (
@@ -38,7 +38,7 @@ export default function Locations() {
 					>
 						<p className="font-bold text-4xl">{banner.name}</p>
 						<p>{banner.desc}</p>
-						<Button display='flex' gap={2} bg='#8DD3BB'>
+						<Button display="flex" gap={2} bg="#8DD3BB">
 							<Send />
 							{banner.cta}
 						</Button>
