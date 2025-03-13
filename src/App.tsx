@@ -8,6 +8,9 @@ import {
 import golobeRoutes from "./routes";
 import { routes } from "./lib/constants/routes";
 import MainLayout from "./features/layout";
+import { useCookie } from "./hooks/useCookie";
+import { useEffect } from "react";
+import { setupInterceptors } from "./api";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -17,6 +20,12 @@ const router = createBrowserRouter(
 	)
 );
 function App() {
+	const { getAccessToken, setAccessToken } = useCookie();
+
+	useEffect(() => {
+		setupInterceptors({ getAccessToken, setAccessToken });
+	}, [getAccessToken, setAccessToken]);
+
 	return (
 		<>
 			<RouterProvider router={router} />
