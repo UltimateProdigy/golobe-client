@@ -1,12 +1,13 @@
 import { BedDoubleIcon, PlaneIcon } from "lucide-react";
 import { routes } from "../../lib/constants/routes";
 import Logo from "../icons/logo";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
 import { useState } from "react";
 
 export default function Navbar() {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const [isActive, setIsActive] = useState<number>();
 
 	const handleClick = (id: number, route: string) => {
@@ -28,6 +29,13 @@ export default function Navbar() {
 			route: routes.hotels.index,
 		},
 	];
+
+	if (
+		location.pathname === routes.auth.login ||
+		location.pathname === routes.auth.register
+	) {
+		return null;
+	}
 
 	return (
 		<div className="flex justify-between items-center px-14 py-6">

@@ -6,6 +6,7 @@ import {
 	Users2Icon,
 	Plus,
 	Send,
+    Calendar,
 } from "lucide-react";
 import { Select, Input } from "antd";
 import { Button } from "@chakra-ui/react";
@@ -90,40 +91,28 @@ export const HotelComponent = () => {
 				<Input
 					size="large"
 					variant="filled"
-					placeholder="From"
+					placeholder="Destination"
 					addonAfter={<Building2 />}
 				/>
 				<Input
 					size="large"
 					variant="filled"
-					placeholder="To"
-					addonAfter={<Globe />}
-				/>
-				<Select
-					placeholder="Trip"
-					className="bg"
-					style={{ width: 120, height: 38 }}
-					options={items}
+					type="date"
+					placeholder="Check In"
+					addonAfter={<Calendar />}
 				/>
 				<Input
 					size="large"
 					variant="filled"
 					type="date"
-					placeholder="Depart"
-					addonAfter={<PlaneTakeoff />}
-				/>
-				<Input
-					size="large"
-					variant="filled"
-					type="date"
-					placeholder="Return"
-					addonAfter={<PlaneLanding />}
+					placeholder="Checkout"
+					addonAfter={<Calendar />}
 				/>
 				<Input
 					size="large"
 					variant="filled"
 					type="number"
-					placeholder="Passenger(s)"
+					placeholder="Guest(s)"
 					addonAfter={<Users2Icon />}
 				/>
 			</div>
@@ -134,7 +123,7 @@ export const HotelComponent = () => {
 				</button>
 				<Button display="flex" gap={2} bg="#8DD3BB">
 					<Send />
-					Show Hotels
+					Show Stays
 				</Button>
 			</div>
 		</div>
