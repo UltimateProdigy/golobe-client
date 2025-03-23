@@ -3,7 +3,7 @@ import { useToast } from "@chakra-ui/react";
 interface IToast {
 	title: string;
 	description: string;
-	status: any;
+	status: string | any;
 }
 
 export const useCustomToast = () => {

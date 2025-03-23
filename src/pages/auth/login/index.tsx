@@ -25,7 +25,7 @@ export default function Login() {
 
 	const loginMutation = useMutation({
 		mutationFn: (data) => {
-			return api.post("/auth", data);
+			return api.post("/auth/login", data);
 		},
 		onSuccess: () => {
 			showToast({

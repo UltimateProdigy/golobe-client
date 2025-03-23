@@ -23,7 +23,7 @@ export default function Register() {
 		formState: { errors },
 	} = useForm({ resolver: yupResolver(registerSchema) });
 
-	const registerMutation = useMutation({
+	const createUser = useMutation({
 		mutationFn: (data) => {
 			return api.post("/register", data);
 		},
@@ -38,14 +38,14 @@ export default function Register() {
 		onError: (error: any) => {
 			showToast({
 				title: "Registration Failed",
-				description: `${error.response?.data || error.message}`,
+				description: `${error.response?.data || error?.message}`,
 				status: "error",
 			});
 		},
 	});
 
 	const onSubmit = (data: any) => {
-		registerMutation.mutate(data);
+		createUser.mutate(data);
 	};
 
 	return (
@@ -158,7 +158,7 @@ export default function Register() {
 						bg="#8DD3BB"
 						width="full"
 						mt={4}
-						isLoading={registerMutation.isPending}
+						isLoading={createUser.isPending}
 						_hover={{ bg: "#7cc1a9" }}
 					>
 						Sign Up
