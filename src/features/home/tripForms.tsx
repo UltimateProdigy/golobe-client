@@ -6,10 +6,13 @@ import {
 	Users2Icon,
 	Plus,
 	Send,
-    Calendar,
+	Calendar,
+	Search
 } from "lucide-react";
 import { Select, Input } from "antd";
 import { Button } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
+import { routes } from "../../lib/constants/routes";
 
 const items = [
 	{
@@ -27,6 +30,7 @@ const items = [
 ];
 
 export const FlightComponent = () => {
+	const location = useLocation();
 	return (
 		<div>
 			<div className="mt-4 flex gap-4">
@@ -70,21 +74,28 @@ export const FlightComponent = () => {
 					addonAfter={<Users2Icon />}
 				/>
 			</div>
-			<div className="flex items-center gap-4 mt-6 justify-end">
-				<button className="flex px-4 py-2 gap-2 rounded cursor-pointer">
-					<Plus />
-					Add Promo Code
-				</button>
-				<Button display="flex" gap={2} bg="#8DD3BB">
-					<Send />
-					Show Flights
-				</Button>
-			</div>
+			{location.pathname === routes.flights.listing ? (
+				<div className="flex justify-end mt-4">
+					<Button bg="#8DD3BB"><Search /></Button>
+				</div>
+			) : (
+				<div className="flex items-center gap-4 mt-6 justify-end">
+					<button className="flex px-4 py-2 gap-2 rounded cursor-pointer">
+						<Plus />
+						Add Promo Code
+					</button>
+					<Button display="flex" gap={2} bg="#8DD3BB">
+						<Send />
+						Show Flights
+					</Button>
+				</div>
+			)}
 		</div>
 	);
 };
 
 export const HotelComponent = () => {
+	const location = useLocation();
 	return (
 		<div>
 			<div className="mt-4 flex gap-4">
@@ -116,16 +127,22 @@ export const HotelComponent = () => {
 					addonAfter={<Users2Icon />}
 				/>
 			</div>
-			<div className="flex items-center gap-4 mt-6 justify-end cursor-pointer">
-				<button className="flex px-4 py-2 rounded gap-2">
-					<Plus />
-					Add Promo Code
-				</button>
-				<Button display="flex" gap={2} bg="#8DD3BB">
-					<Send />
-					Show Stays
-				</Button>
-			</div>
+			{location.pathname === routes.hotels.listing ? (
+				<div className="flex justify-end mt-4">
+					<Button bg="#8DD3BB"><Search /></Button>
+				</div>
+			) : (
+				<div className="flex items-center gap-4 mt-6 justify-end cursor-pointer">
+					<button className="flex px-4 py-2 rounded gap-2">
+						<Plus />
+						Add Promo Code
+					</button>
+					<Button display="flex" gap={2} bg="#8DD3BB">
+						<Send />
+						Show Stays
+					</Button>
+				</div>
+			)}
 		</div>
 	);
 };
