@@ -10,12 +10,16 @@ import { loginSchema } from "../../../lib/utils/yupValidations";
 import { useCustomToast } from "../../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../../lib/constants/routes";
+import { LoginResponse } from "../../../lib/types";
+import { AxiosResponse } from "axios";
+import { useAuth } from "../../../context/authContext";
 
 export default function Login() {
 	const [show, setShow] = useState(false);
 	const handleClick = () => setShow(!show);
 	const showToast = useCustomToast();
 	const navigate = useNavigate();
+	const { setAuth } = useAuth()
 
 	const {
 		register,
@@ -25,9 +29,12 @@ export default function Login() {
 
 	const loginMutation = useMutation({
 		mutationFn: (data) => {
-			return api.post("/auth/login", data);
+			return api.post<LoginResponse>("/auth/login", data);
 		},
-		onSuccess: () => {
+		onSuccess: (response) => {
+			const res = response as AxiosResponse<LoginResponse>;
+			const { id, firstName, lastName } = res.data;
+			setAuth({ id, firstName, lastName });
 			showToast({
 				title: "Welcome",
 				description: "Login Successful",

@@ -3,8 +3,10 @@ import Filter from "../../components/filter"
 import Footer from "../../components/footer"
 import { listings } from "./data"
 import { Heart } from "lucide-react"
+import { useCustomToast } from "../../hooks/useToast"
 
 export default function FlightListing() {
+    const showToast = useCustomToast();
     return (
         <div className="bg-[#f7f8f8] h-[100%]">
             <Filter>
@@ -43,7 +45,13 @@ export default function FlightListing() {
                         </div>
                         <hr className="ml-10" />
                         <div className="flex gap-4 items-center mt-4">
-                            <Button border='1px' borderColor='teal' bg='white'><Heart /></Button>
+                            <Button border='1px'
+                                borderColor='teal'
+                                bg='white'
+                                onClick={() => showToast({ title: "Added To Favourites", status: "success" })}
+                            >
+                                <Heart />
+                            </Button>
                             <Button w='100%' bg='#8DD3BB'>View Deals</Button>
                         </div>
                     </div>
