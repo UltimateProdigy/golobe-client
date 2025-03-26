@@ -2,7 +2,7 @@ import { useToast } from "@chakra-ui/react";
 
 interface IToast {
 	title: string;
-	description: string;
+	description?: string;
 	status: string | any;
 }
 

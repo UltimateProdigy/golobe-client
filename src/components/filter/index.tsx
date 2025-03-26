@@ -10,6 +10,7 @@ interface IFilter {
 }
 export default function Filter({ children }: IFilter) {
     const location = useLocation();
+
     return (
         <div>
             <div className="pt-6">
