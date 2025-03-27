@@ -19,7 +19,7 @@ export default function Login() {
 	const handleClick = () => setShow(!show);
 	const showToast = useCustomToast();
 	const navigate = useNavigate();
-	const { setAuth } = useAuth()
+	const { setUser } = useAuth()
 
 	const {
 		register,
@@ -33,8 +33,8 @@ export default function Login() {
 		},
 		onSuccess: (response) => {
 			const res = response as AxiosResponse<LoginResponse>;
-			const { id, firstName, lastName } = res.data;
-			setAuth({ id, firstName, lastName });
+			const { id, firstName, lastName } = res.data.user;
+			setUser({ id, firstName, lastName });
 			showToast({
 				title: "Welcome",
 				description: "Login Successful",

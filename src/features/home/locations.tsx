@@ -18,7 +18,7 @@ export default function Locations() {
 			</div>
 			<div className="grid grid-cols-3 gap-8">
 				{locations.map((location) => (
-					<div className="flex rounded-lg p-2 items-center gap-4 shadow-lg cursor-pointer mb-6 hover:scale-105">
+					<div className="flex rounded-lg p-2 items-center gap-4 shadow-lg cursor-pointer mb-6 hover:scale-105 transition-transform">
 						<img src="/src/assets/city.png" alt="location" />
 						<div>
 							<div className="flex gap-4 mb-2">
@@ -38,7 +38,7 @@ export default function Locations() {
 					>
 						<p className="font-bold text-4xl">{banner.name}</p>
 						<p>{banner.desc}</p>
-						<Button display="flex" gap={2} bg="#8DD3BB">
+						<Button display="flex" gap={2} bg="#8DD3BB" _hover={{ transform: 'scale(1.05)' }}>
 							<Send />
 							{banner.cta}
 						</Button>
