@@ -1,9 +1,9 @@
 import { Box, Button, Checkbox } from "@chakra-ui/react"
-import Filter from "../../components/filter"
-import Footer from "../../components/footer"
-import { listings } from "./data"
+import Filter from "../../../components/filter"
+import Footer from "../../../components/footer"
+import { listings } from "../data"
 import { Heart } from "lucide-react"
-import { useCustomToast } from "../../hooks/useToast"
+import { useCustomToast } from "../../../hooks/useToast"
 
 export default function FlightListing() {
     const showToast = useCustomToast();
