@@ -2,9 +2,6 @@ import { createContext, useContext, ReactNode, useState, useEffect } from 'react
 import { useCookie } from '../hooks/useCookie';
 import { jwtDecode } from "jwt-decode";
 // import api from '../api';
-import { useNavigate } from 'react-router-dom';
-import { routes } from '../lib/constants/routes';
-
 
 interface AuthData {
     id: string;
@@ -25,12 +22,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const { getAccessToken, removeAccessToken } = useCookie();
     const [user, setUser] = useState<AuthData | null>(null);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
 
     const logout = () => {
         removeAccessToken();
+        setLoading(false)
         setUser(null);
-        navigate(routes.auth.login);
     }
 
     const validateSession = async () => {
@@ -40,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             const token = getAccessToken();
             const decoded = jwtDecode(token) as any;
             setUser({
-                id: decoded.userId,
+                id: decoded.id,
                 firstName: decoded.firstName || '',
                 lastName: decoded.lastName || ''
             });
@@ -51,14 +47,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         } catch (error) {
             console.error("Auth validation failed:", error);
             logout();
+        } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        const token = getAccessToken();
-        if (token) validateSession();
-        else logout()
+        validateSession();
     }, []);
 
     return (
