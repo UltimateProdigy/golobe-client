@@ -45,11 +45,9 @@ export default function Navbar() {
 				{links.map((link) => (
 					<div
 						key={link.id}
-						className={`flex gap-2 cursor-pointer ${isActive === link.id
-							? "border-b-4 border-teal-400"
-							: ""
-							}`}
+						className={"flex gap-2 cursor-pointer"}
 						onClick={() => handleClick(link.id, link.route)}
+						style={{ borderBottom: `${isActive === link.id ? "3px solid #8DD3BB" : ""}` }}
 					>
 						<div>
 							<link.icon />
@@ -104,7 +102,6 @@ export default function Navbar() {
 						</PopoverContent>
 					</Popover>
 				</div>
-
 			) : (
 				<div className="flex gap-10 items-center">
 					<Button onClick={() => navigate(routes.auth.login)} bg="white">

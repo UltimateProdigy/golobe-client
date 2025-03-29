@@ -1,7 +1,9 @@
 import { Send } from "lucide-react";
 import { locations, banners } from "./data";
 import { Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 export default function Locations() {
+	const navigate = useNavigate();
 	return (
 		<div className="mt-[250px] mx-14">
 			<div className="flex justify-between mb-10 items-center">
@@ -38,7 +40,7 @@ export default function Locations() {
 					>
 						<p className="font-bold text-4xl">{banner.name}</p>
 						<p>{banner.desc}</p>
-						<Button display="flex" gap={2} bg="#8DD3BB" _hover={{ transform: 'scale(1.05)' }}>
+						<Button display="flex" gap={2} bg="#8DD3BB" _hover={{ transform: 'scale(1.05)' }} onClick={() => navigate(banner.route)}>
 							<Send />
 							{banner.cta}
 						</Button>

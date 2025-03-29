@@ -1,21 +1,47 @@
-import { Box, Button, Checkbox } from "@chakra-ui/react"
-import Filter from "../../../components/filter"
-import Footer from "../../../components/footer"
-import { listings } from "../data"
-import { Heart } from "lucide-react"
-import { useCustomToast } from "../../../hooks/useToast"
+import { Box, Button, Checkbox } from "@chakra-ui/react";
+import Filter from "../../../components/filter";
+import Footer from "../../../components/footer";
+import { listings } from "../data";
+import { Heart } from "lucide-react";
+import { useCustomToast } from "../../../hooks/useToast";
+import useFavouritesStore from "../../../store/favourites";
 
 export default function FlightListing() {
+    const { addFavourite, removeFavourite, isFavourite } = useFavouritesStore();
     const showToast = useCustomToast();
+
+    const handleFavouriteClick = (flight: typeof listings[0]) => {
+        const favouriteItem = {
+            id: flight.id,
+            name: flight.name,
+            type: 'flight' as const,
+            img: flight.img,
+            departure: '12:00 pm', 
+            arrival: '01:28 pm',
+            duration: '1h 28m',
+            airline: flight.name, 
+            price: flight.cost
+        };
+
+        if (isFavourite(flight.id)) {
+            removeFavourite(flight.id);
+            showToast({ title: "Removed from Favourites", status: "info" });
+        } else {
+            addFavourite(favouriteItem);
+            showToast({ title: "Added to Favourites", status: "success" });
+        }
+    };
+
     return (
         <div className="bg-[#f7f8f8] h-[100%]">
             <Filter>
                 {listings.map((data) => (
-                    <div className="bg-white rounded-2xl p-6 m-4 shadow-md">
+                    <div key={data.id} className="bg-white rounded-2xl p-6 m-4 shadow-md">
                         <div className="w-[60vw] flex gap-10 mb-6">
                             <img
                                 src={data.img}
                                 alt={data.name}
+                                className="w-40 h-40 object-cover rounded-lg"
                             />
                             <div className="w-full">
                                 <div className="flex justify-between">
@@ -45,12 +71,13 @@ export default function FlightListing() {
                         </div>
                         <hr className="ml-10" />
                         <div className="flex gap-4 items-center mt-4">
-                            <Button border='1px'
+                            <Button
+                                border='1px'
                                 borderColor='teal'
                                 bg='white'
-                                onClick={() => showToast({ title: "Added To Favourites", status: "success" })}
+                                onClick={() => handleFavouriteClick(data)}
                             >
-                                <Heart />
+                                <Heart fill={isFavourite(data.id) ? "red" : "white"} color={isFavourite(data.id) ? "red" : "red"} />
                             </Button>
                             <Button w='100%' bg='#8DD3BB'>View Deals</Button>
                         </div>

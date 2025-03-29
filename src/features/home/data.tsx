@@ -1,5 +1,6 @@
 import { PlaneIcon, BedDoubleIcon } from "lucide-react";
 import { FlightComponent, HotelComponent } from "./tripForms";
+import { routes } from "../../lib/constants/routes";
 
 export const links = [
 	{
@@ -35,6 +36,7 @@ export const banners = [
 		bg: "bg-[url(/src/assets/f-banner.png)]",
 		desc: "Search Flights & Places Hire to our most popular destinations",
 		cta: "Show Flights",
+		route: routes.flights.listing
 	},
 	{
 		id: 2,
@@ -42,5 +44,6 @@ export const banners = [
 		bg: "bg-[url(/src/assets/h-banner.png)]",
 		desc: "Search Hotels & Places Hire to our most popular destinations",
 		cta: "Show Hotels",
+		route: routes.hotels.listing
 	},
 ];
