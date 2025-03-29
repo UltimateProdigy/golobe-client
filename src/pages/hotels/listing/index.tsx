@@ -1,22 +1,48 @@
-import { Box, Button } from "@chakra-ui/react"
-import Filter from "../../../components/filter"
-import Footer from "../../../components/footer"
-import { listings } from "../data"
-import { Heart, MapPin, Bath } from "lucide-react"
-import { useCustomToast } from "../../../hooks/useToast"
+import { Box, Button } from "@chakra-ui/react";
+import Filter from "../../../components/filter";
+import Footer from "../../../components/footer";
+import { listings } from "../data";
+import { Heart, MapPin, Bath } from "lucide-react";
+import { useCustomToast } from "../../../hooks/useToast";
+import useFavouritesStore from "../../../store/favourites";
 
 export default function HotelListing() {
+    const { addFavourite, removeFavourite, isFavourite } = useFavouritesStore();
     const showToast = useCustomToast();
+
+    const handleFavouriteClick = (hotel: typeof listings[0]) => {
+        const favouriteItem = {
+            id: hotel.id,
+            name: hotel.name,
+            type: 'hotel' as const,
+            img: hotel.img,
+            ratings: hotel.ratings,
+            remark: hotel.remark,
+            reviews: hotel.reviews,
+            cost: hotel.cost,
+            amenities: hotel.amenities,
+            address: hotel.address
+        };
+
+        if (isFavourite(hotel.id)) {
+            removeFavourite(hotel.id);
+            showToast({ title: "Removed from Favourites", status: "info" });
+        } else {
+            addFavourite(favouriteItem);
+            showToast({ title: "Added to Favourites", status: "success" });
+        }
+    };
+
     return (
         <div className="bg-[#f7f8f8] h-[100%]">
             <Filter>
                 {listings.map((data) => (
-                    <div className="bg-white rounded-2xl p-6 m-4 shadow-md">
+                    <div key={data.id} className="bg-white rounded-2xl p-6 m-4 shadow-md">
                         <div className="w-[60vw] flex gap-10 mb-6">
                             <img
                                 src={data.img}
                                 alt={data.name}
-                                className="rounded-xl w-[200px]"
+                                className="rounded-xl w-[200px] h-[200px] object-cover"
                             />
                             <div className="w-full">
                                 <div className="flex justify-between">
@@ -32,9 +58,9 @@ export default function HotelListing() {
                                         <p>{data.address}</p>
                                     </div>
                                     <div className="flex gap-6">
-                                        <Box display="flex" alignItems="center" >
+                                        <Box display="flex" alignItems="center">
                                             {Array.from(
-                                                { length: data.ratings },
+                                                { length: Math.floor(data.ratings) },
                                                 (_, i) => (
                                                     <span
                                                         key={i}
@@ -68,9 +94,12 @@ export default function HotelListing() {
                                 border='1px'
                                 borderColor='teal'
                                 bg='white'
-                                onClick={() => showToast({ title: "Added To Favourites", status: "success" })}
+                                onClick={() => handleFavouriteClick(data)}
                             >
-                                <Heart />
+                                <Heart
+                                    fill={isFavourite(data.id) ? "red" : ""}
+                                    color={isFavourite(data.id) ? "red" : "red"}
+                                />
                             </Button>
                             <Button w='100%' bg='#8DD3BB'>View Place</Button>
                         </div>

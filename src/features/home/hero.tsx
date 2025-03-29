@@ -25,12 +25,9 @@ const Hero = () => {
 					{links.map((link) => (
 						<div
 							key={link.id}
-							className={`flex gap-2 cursor-pointer pb-3 ${
-								isActive === link.id
-									? "border-b-2 border-teal-400"
-									: ""
-							}`}
+							className="flex gap-2 cursor-pointer pb-3"
 							onClick={() => handleClick(link.id)}
+							style={{ borderBottom: `${isActive === link.id ? "3px solid #8DD3BB" : ""}` }}
 						>
 							<div>
 								<link.icon fill="black" />

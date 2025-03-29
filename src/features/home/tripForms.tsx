@@ -11,26 +11,31 @@ import {
 } from "lucide-react";
 import { Select, Input } from "antd";
 import { Button } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../../lib/constants/routes";
 
 const items = [
 	{
 		key: "1",
-		label: "Return",
+		label: "Round Trip",
 	},
 	{
 		key: "2",
-		label: "Item 2",
+		label: "On Way",
 	},
 	{
 		key: "3",
-		label: "Item 3",
+		label: "Multi-City",
+	},
+	{
+		key: "4",
+		label: "Flexible",
 	},
 ];
 
 export const FlightComponent = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
 	return (
 		<div>
 			<div className="mt-4 flex gap-4">
@@ -84,7 +89,7 @@ export const FlightComponent = () => {
 						<Plus />
 						Add Promo Code
 					</button>
-					<Button display="flex" gap={2} bg="#8DD3BB">
+					<Button display="flex" gap={2} bg="#8DD3BB" onClick={() => navigate(routes.flights.listing)}>
 						<Send />
 						Show Flights
 					</Button>
@@ -96,6 +101,7 @@ export const FlightComponent = () => {
 
 export const HotelComponent = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
 	return (
 		<div>
 			<div className="mt-4 flex gap-4">
@@ -137,7 +143,7 @@ export const HotelComponent = () => {
 						<Plus />
 						Add Promo Code
 					</button>
-					<Button display="flex" gap={2} bg="#8DD3BB">
+					<Button display="flex" gap={2} bg="#8DD3BB" onClick={() => navigate(routes.hotels.listing)}>
 						<Send />
 						Show Stays
 					</Button>

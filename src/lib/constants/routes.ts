@@ -14,4 +14,7 @@ export const routes = {
 		details: "/flights/:id",
 		listing: "/flights/listing"
 	},
+	favourites: {
+		index: "/favourites"
+	}
 };

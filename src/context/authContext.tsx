@@ -1,13 +1,13 @@
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import { useCookie } from '../hooks/useCookie';
 import { jwtDecode } from "jwt-decode";
-// import api from '../api';
+import api from '../api';
 
 interface AuthData {
     id: string;
     firstName: string;
     lastName: string;
-    email?: string; // Added for JWT claims
+    email?: string;
 }
 
 interface AuthContextType {
@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             });
 
             // // 2. Server-side validation
-            // const response = await api.get('/auth/session');
-            // setUser(response.data.user);
+            const response = await api.get('/auth/session');
+            setUser(response.data.user);
         } catch (error) {
             console.error("Auth validation failed:", error);
             logout();
