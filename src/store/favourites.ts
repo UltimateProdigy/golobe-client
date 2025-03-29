@@ -1,35 +1,30 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-// Base properties common to all favorites
 type BaseFavouriteItem = {
     id: number;
     name: string;
     type: 'hotel' | 'flight';
     img: string;
-};
-
-// Hotel-specific properties
-type HotelFavourite = BaseFavouriteItem & {
-    type: 'hotel';
     ratings: number;
     remark: string;
     reviews: number;
     cost: number;
+};
+
+type HotelFavourite = BaseFavouriteItem & {
+    type: 'hotel';
     amenities: number;
     address: string;
 };
 
-// Flight-specific properties
 type FlightFavourite = BaseFavouriteItem & {
     type: 'flight';
     departure: string;
     arrival: string;
     duration: string;
-    airline: string;
-    price: number;
 };
 
-// Union type for all possible favorites
 type FavouriteItem = HotelFavourite | FlightFavourite;
 
 type FavouritesStore = {
@@ -41,24 +36,34 @@ type FavouritesStore = {
     isFavourite: (id: number) => boolean;
 };
 
-const useFavouritesStore = create<FavouritesStore>((set, get) => ({
-    favourites: [],
-    setFavourites: (favourites) => set({ favourites }),
-    addFavourite: (item) =>
-        set((state) => {
-            if (state.favourites.some(fav => fav.id === item.id)) {
-                return state;
-            }
-            return { favourites: [...state.favourites, item] };
+const useFavouritesStore = create<FavouritesStore>()(
+    persist(
+        (set, get) => ({
+            favourites: [],
+            setFavourites: (favourites) => set({ favourites }),
+            addFavourite: (item) =>
+                set((state) => {
+                    if (state.favourites.some((fav) => fav.id === item.id)) {
+                        return state;
+                    }
+                    return { favourites: [...state.favourites, item] };
+                }),
+            removeFavourite: (id) =>
+                set((state) => ({
+                    favourites: state.favourites.filter((item) => item.id !== id),
+                })),
+            getFavouritesByType: (type) =>
+                get().favourites.filter((item) => item.type === type),
+            isFavourite: (id) =>
+                get().favourites.some((item) => item.id === id),
         }),
-    removeFavourite: (id) =>
-        set((state) => ({
-            favourites: state.favourites.filter((item: any) => item.id !== id),
-        })),
-    getFavouritesByType: (type) =>
-        get().favourites.filter(item => item.type === type),
-    isFavourite: (id) =>
-        get().favourites.some((item: any) => item.id === id),
-}));
+        {
+            name: 'favourites-storage',
+            storage: createJSONStorage(() => localStorage),
+            // Optional: Only persist certain fields
+            partialize: (state) => ({ favourites: state.favourites }),
+        }
+    )
+);
 
 export default useFavouritesStore;

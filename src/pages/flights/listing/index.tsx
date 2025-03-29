@@ -16,11 +16,13 @@ export default function FlightListing() {
             name: flight.name,
             type: 'flight' as const,
             img: flight.img,
-            departure: '12:00 pm', 
+            departure: '12:00 pm',
             arrival: '01:28 pm',
             duration: '1h 28m',
-            airline: flight.name, 
-            price: flight.cost
+            reviews: flight.reviews,
+            remark: flight.remark,
+            ratings: flight.ratings,
+            cost: flight.cost
         };
 
         if (isFavourite(flight.id)) {

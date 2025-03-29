@@ -97,7 +97,7 @@ export default function HotelListing() {
                                 onClick={() => handleFavouriteClick(data)}
                             >
                                 <Heart
-                                    fill={isFavourite(data.id) ? "red" : ""}
+                                    fill={isFavourite(data.id) ? "red" : "white"}
                                     color={isFavourite(data.id) ? "red" : "red"}
                                 />
                             </Button>

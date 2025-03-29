@@ -64,7 +64,7 @@ export default function Navbar() {
 
 			{user ? (
 				<div className="flex items-center">
-					<div className="flex gap-1 items-center cursor-pointer hover:bg-gray-100 p-2 rounded-lg">
+					<div className="flex gap-1 items-center cursor-pointer hover:bg-gray-100 p-2 rounded-lg" onClick={() => navigate(routes.favourites.index)}>
 						<Heart fill="black" />
 						<p>Favourites</p>
 					</div>
