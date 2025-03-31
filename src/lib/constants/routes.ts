@@ -3,6 +3,7 @@ export const routes = {
 	auth: {
 		register: "/auth/register",
 		login: "/auth/login",
+		forgot_password: "/auth/forgot-password"
 	},
 	hotels: {
 		index: "/hotels",

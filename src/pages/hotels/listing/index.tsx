@@ -23,7 +23,6 @@ export default function HotelListing() {
             amenities: hotel.amenities,
             address: hotel.address
         };
-
         if (isFavourite(hotel.id)) {
             removeFavourite(hotel.id);
             showToast({ title: "Removed from Favourites", status: "info" });
