@@ -19,3 +19,13 @@ export interface RouteConfig {
     element: React.ReactNode;
     protected?: boolean;
 }
+export interface IProfile {
+    firstName: string;
+    lastName: string;
+    id: string;
+    createdAt: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    dateOfBirth: string;
+}
