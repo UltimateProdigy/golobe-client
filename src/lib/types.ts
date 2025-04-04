@@ -29,3 +29,11 @@ export interface IProfile {
     address: string;
     dateOfBirth: string;
 }
+
+export interface ICard {
+    map: any;
+    cardName: string;
+    cardNumber: string;
+    cvc: string
+    expDate: string
+}
