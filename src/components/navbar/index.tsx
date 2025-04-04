@@ -77,18 +77,18 @@ export default function Navbar() {
 						</PopoverTrigger>
 						<PopoverContent width="200px" boxShadow="lg" borderRadius="lg">
 							<PopoverBody className="space-y-2 p-2">
-								<div className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md">
+								<div className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md cursor-pointer" onClick={() => navigate(routes.profile.index)}>
 									<User className="w-4 h-4" />
 									<span className="text-sm">Profile</span>
 								</div>
 
-								<div className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md">
+								<div className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md cursor-pointer">
 									<Settings className="w-4 h-4" />
 									<span className="text-sm">Settings</span>
 								</div>
 
 								<div
-									className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md text-red-500"
+									className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md text-red-500 cursor-pointer"
 									onClick={() => {
 										removeAccessToken();
 										setUser(null);

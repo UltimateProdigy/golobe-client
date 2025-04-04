@@ -1,24 +1,24 @@
 import { useToast } from "@chakra-ui/react";
 
 interface IToast {
-	title: string;
-	description?: string;
-	status: string | any;
+    title: string;
+    description?: string;
+    status: string | any;
 }
 
 export const useCustomToast = () => {
-	const toast = useToast();
+    const toast = useToast();
 
-	const showToast = ({ title, description, status }: IToast) => {
-		toast({
-			title,
-			description,
-			status,
-			duration: 5000,
-			isClosable: true,
-			position: "top",
-		});
-	};
+    const showToast = ({ title, description, status }: IToast) => {
+        toast({
+            title,
+            description,
+            status,
+            duration: 5000,
+            isClosable: true,
+            position: "top-right",
+        });
+    };
 
-	return showToast;
+    return showToast;
 };

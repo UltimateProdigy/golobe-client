@@ -45,7 +45,7 @@ export default function Login() {
 		onError: (error: any) => {
 			showToast({
 				title: "Login Failed",
-				description: `${error.response?.data || error.message}`,
+				description: `${error.response?.message || error.message}`,
 				status: "error",
 			});
 		},

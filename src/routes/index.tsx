@@ -16,6 +16,7 @@ const FlightDetails = lazy(() => import("../pages/flights/[id]"));
 const FlightListing = lazy(() => import("../pages/flights/listing/index"))
 const Favourites = lazy(() => import("../pages/favourites"))
 const ForgotPassword = lazy(() => import('../pages/auth/forgot-password/index'))
+const Profile = lazy(() => import('../pages/profile/index'))
 
 const golobe: RouteConfig[] = [
 	{
@@ -67,6 +68,11 @@ const golobe: RouteConfig[] = [
 	{
 		path: routes.favourites.index,
 		element: <Favourites />,
+		protected: true
+	},
+	{
+		path: routes.profile.index,
+		element: <Profile />,
 		protected: true
 	},
 ];

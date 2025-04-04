@@ -17,5 +17,8 @@ export const routes = {
 	},
 	favourites: {
 		index: "/favourites"
+	},
+	profile: {
+		index: "/profile"
 	}
 };
