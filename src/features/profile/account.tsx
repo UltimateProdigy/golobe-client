@@ -5,6 +5,7 @@ import { useState } from "react";
 import api from "../../api";
 import { useAuth } from "../../context/authContext";
 import { useCustomToast } from "../../hooks/useToast";
+import { formatDate } from "../../lib/utils";
 
 interface IAccount {
     data?: IProfile;
@@ -56,12 +57,12 @@ export default function Account({ data }: IAccount) {
         { label: "Email", key: "email", value: data?.email || "" },
         { label: "Phone Number", key: "phoneNumber", value: data?.phoneNumber || "" },
         { label: "Address", key: "address", value: data?.address || "" },
-        { label: "Date of Birth", key: "dateOfBirth", value: data?.dateOfBirth || "" }
+        { label: "Date of Birth", key: "dateOfBirth", value: formatDate(data?.dateOfBirth) || "" }
     ];
 
     return (
         <div>
-            <p className="font-bold text-4xl">Account</p>
+            <p className="font-bold text-3xl">Account</p>
             <div className="shadow-lg p-7 flex flex-col gap-6 mt-4">
                 {fields.map((field) => (
                     <div key={field.key} className="flex justify-between items-center">
@@ -93,11 +94,21 @@ export default function Account({ data }: IAccount) {
                             <FormLabel>
                                 {fields.find(f => f.key === editingField)?.label}
                             </FormLabel>
-                            <Input
-                                value={tempValue}
-                                onChange={(e) => setTempValue(e.target.value)}
-                                placeholder={`Enter new ${editingField}`}
-                            />
+                            {editingField === 'dateOfBirth' ? (
+                                <Input
+                                    type="date"
+                                    value={tempValue}
+                                    onChange={(e) => setTempValue(e.target.value)}
+                                    max={new Date().toISOString().split('T')[0]}
+                                />
+                            ) : (
+                                <Input
+                                    value={tempValue}
+                                    onChange={(e) => setTempValue(e.target.value)}
+                                    placeholder={`Enter new ${editingField}`}
+                                    type={editingField === 'email' ? 'email' : 'text'}
+                                />
+                            )}
                         </FormControl>
                     </ModalBody>
                     <ModalFooter>
