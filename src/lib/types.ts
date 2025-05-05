@@ -4,7 +4,7 @@ export interface LoginResponse {
         id: string;
         firstName: string;
         lastName: string;
-    }
+    };
     accessToken: string;
 }
 
@@ -31,9 +31,47 @@ export interface IProfile {
 }
 
 export interface ICard {
-    map: any;
     cardName: string;
     cardNumber: string;
-    cvc: string
-    expDate: string
+    cvc: string;
+    expDate: string;
+}
+
+export interface AddCardModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onCardAdded: () => void;
+}
+
+
+export interface Iflight {
+    id: string;
+    airline: string;
+    cabin: string;
+    remark: string;
+    reviews: number;
+    price: number;
+    departure: { airport: string; time: string };
+    arrival: { airport: string; time: string };
+    name: string;
+    img: string;
+    duration: string;
+    ratings: number;
+    cost: number;
+}
+
+
+export interface StateOption {
+    value: string;
+    label: string;
+}
+
+export interface TripOption {
+    key: string;
+    label: string;
+}
+
+export interface CityOption {
+    value: string;
+    label: string;
 }

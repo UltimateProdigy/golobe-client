@@ -5,7 +5,7 @@ import { useState } from "react";
 import api from "../../api";
 import { useAuth } from "../../context/authContext";
 import { useCustomToast } from "../../hooks/useToast";
-import { formatDate } from "../../lib/utils";
+import { formatDateAlt } from "../../lib/utils";
 
 interface IAccount {
     data?: IProfile;
@@ -57,7 +57,7 @@ export default function Account({ data }: IAccount) {
         { label: "Email", key: "email", value: data?.email || "" },
         { label: "Phone Number", key: "phoneNumber", value: data?.phoneNumber || "" },
         { label: "Address", key: "address", value: data?.address || "" },
-        { label: "Date of Birth", key: "dateOfBirth", value: formatDate(data?.dateOfBirth) || "" }
+        { label: "Date of Birth", key: "dateOfBirth", value: formatDateAlt(data?.dateOfBirth) || "" }
     ];
 
     return (

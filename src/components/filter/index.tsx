@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { FlightComponent, HotelComponent } from "../../features/home/tripForms";
+import FlightComponent from "../flight/flight";
+import HotelComponent from "../hotel/hotel";
 import { useLocation } from "react-router-dom";
 import { routes } from "../../lib/constants/routes";
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark, Button, Accordion, AccordionButton, Box, AccordionIcon, AccordionItem, AccordionPanel, Checkbox, Divider } from "@chakra-ui/react";

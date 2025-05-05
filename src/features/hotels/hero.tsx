@@ -1,4 +1,4 @@
-import { HotelComponent } from "../home/tripForms";
+import HotelComponent from "../../components/hotel/hotel";
 
 const HotelHero = () => {
 	return (

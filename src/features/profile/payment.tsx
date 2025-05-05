@@ -10,11 +10,11 @@ import AddCardModal from "./addCard";
 
 export default function PaymentMethods() {
     const { user } = useAuth();
-    const [card, setCard] = useState([])
+    const [card, setCard] = useState<ICard[]>([])
     const showToast = useCustomToast();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const getCards = async () => {
+    const getCard = async () => {
         try {
             const res = await api.get(`/api/card/${user?.id}`)
             setCard(res.data)
@@ -22,15 +22,15 @@ export default function PaymentMethods() {
         } catch (err) {
             console.log(err)
             showToast({
-                title: "Login Failed",
-                description: "Error updating data",
+                title: "Failed",
+                description: "Error getting data",
                 status: "error",
             });
         }
     }
 
     useEffect(() => {
-        getCards();
+        getCard();
     }, [user?.id])
 
     if (!card) {
@@ -70,7 +70,7 @@ export default function PaymentMethods() {
             <AddCardModal
                 isOpen={isOpen}
                 onClose={onClose}
-                onCardAdded={getCards}
+                onCardAdded={getCard}
             />
         </div>
     )
