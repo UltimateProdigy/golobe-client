@@ -5,4 +5,4 @@ npm run lint -- --fix || {
 }
 
 # Run formatting
-npm run format
+npm run build
