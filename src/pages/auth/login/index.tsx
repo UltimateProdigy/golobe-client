@@ -11,12 +11,16 @@ import { useCustomToast } from "../../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../../lib/constants/routes";
 import { LoginResponse } from "../../../lib/types";
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { useAuth } from "../../../context/authContext";
+
+interface LoginProps {
+	email: string
+	password: string
+}
 
 export default function Login() {
 	const [show, setShow] = useState(false);
-	const handleClick = () => setShow(!show);
 	const showToast = useCustomToast();
 	const navigate = useNavigate();
 	const { setUser } = useAuth()
@@ -25,10 +29,10 @@ export default function Login() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({ resolver: yupResolver(loginSchema) });
+	} = useForm<LoginProps>({ resolver: yupResolver(loginSchema) });
 
-	const loginMutation = useMutation({
-		mutationFn: (data) => {
+	const loginMutation = useMutation<AxiosResponse<LoginResponse>, AxiosError, LoginProps>({
+		mutationFn: (data: LoginProps) => {
 			return api.post<LoginResponse>("/auth/login", data);
 		},
 		onSuccess: (response) => {
@@ -42,16 +46,16 @@ export default function Login() {
 			});
 			navigate(routes.index);
 		},
-		onError: (error: any) => {
+		onError: (error) => {
 			showToast({
 				title: "Login Failed",
-				description: `${error.response?.message || error.message}`,
+				description: `${error.message}`,
 				status: "error",
 			});
 		},
 	});
 
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: LoginProps) => {
 		loginMutation.mutate(data);
 	};
 
@@ -92,10 +96,10 @@ export default function Login() {
 							/>
 							<InputRightElement width="4.5rem" mt={2}>
 								<Button
-									bg="white"
+									bg="gray.300"
 									h="1.75rem"
 									size="sm"
-									onClick={handleClick}
+									onClick={() => setShow(!show)}
 								>
 									{show ? <EyeIcon /> : <EyeClosed />}
 								</Button>

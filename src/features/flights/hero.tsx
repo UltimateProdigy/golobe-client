@@ -1,4 +1,4 @@
-import { FlightComponent } from "../home/tripForms";
+import FlightComponent from "../../components/flight/flight";
 
 const FlightHero = () => {
 	return (

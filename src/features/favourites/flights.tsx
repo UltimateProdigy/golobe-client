@@ -1,13 +1,15 @@
 import { Box, Button, Checkbox } from "@chakra-ui/react";
 import useFavouritesStore from "../../store/favourites";
 import { Heart } from "lucide-react";
+import { getFlightIcon } from "../../pages/flights/listing/data";
+import { useNavigate } from "react-router-dom";
 
 export default function FlightsFavourites() {
-
+ const navigate = useNavigate()
     const { favourites, removeFavourite } = useFavouritesStore();
 
-    const handleFavouriteClick = (hotelId: number) => {
-        removeFavourite(hotelId);
+    const handleFavouriteClick = (flightId: string) => {
+        removeFavourite(flightId);
     };
 
     const flightFavourites = favourites.filter(fav => fav.type === 'flight');
@@ -22,10 +24,10 @@ export default function FlightsFavourites() {
     return (
         <div>
             {flightFavourites.map((data) => (
-                <div key={data.id} className="bg-white rounded-2xl p-6 m-4 shadow-md mx-8">
+                <div key={data._id} className="bg-white rounded-2xl p-6 m-4 shadow-md mx-8">
                     <div className="w-[60vw] flex gap-10 mb-6">
                         <img
-                            src={data.img}
+                            src={getFlightIcon(data.name)}
                             alt={data.name}
                             className="w-40 h-40 object-cover rounded-lg"
                         />
@@ -45,11 +47,11 @@ export default function FlightsFavourites() {
                             </div>
                             <div className="mt-4">
                                 <div>
-                                    <Checkbox colorScheme="teal" fontWeight='bold'>12:00 pm - 01:28 pm</Checkbox>
+                                    <Checkbox colorScheme="teal" fontWeight='bold'>{data.departure} - {data.arrival}</Checkbox>
                                     <p className="text-sm pl-7 pb-4">{data.name}</p>
                                 </div>
                                 <div>
-                                    <Checkbox colorScheme="teal" fontWeight='bold'>12:00 pm - 01:28 pm</Checkbox>
+                                    <Checkbox colorScheme="teal" fontWeight='bold'>{data.departure} - {data.arrival}</Checkbox>
                                     <p className="text-sm pl-7">{data.name}</p>
                                 </div>
                             </div>
@@ -61,11 +63,11 @@ export default function FlightsFavourites() {
                             border='1px'
                             borderColor='teal'
                             bg='white'
-                            onClick={() => handleFavouriteClick(data.id)}
+                            onClick={() => handleFavouriteClick(data._id)}
                         >
                             <Heart fill="red" color="red" />
                         </Button>
-                        <Button w='100%' bg='#8DD3BB'>View Deals</Button>
+                        <Button w='100%' bg='#8DD3BB' onClick={() => navigate(`/flights/listing/${data._id}`)}>View Deals</Button>
                     </div>
                 </div>
             ))}

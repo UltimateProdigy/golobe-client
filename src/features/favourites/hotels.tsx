@@ -5,7 +5,7 @@ import useFavouritesStore from "../../store/favourites";
 export default function HotelFavourites() {
     const { favourites, removeFavourite } = useFavouritesStore();
 
-    const handleFavouriteClick = (hotelId: number) => {
+    const handleFavouriteClick = (hotelId: string) => {
         removeFavourite(hotelId);
     };
 

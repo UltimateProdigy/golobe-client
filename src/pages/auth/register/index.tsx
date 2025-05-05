@@ -10,6 +10,15 @@ import { registerSchema } from "../../../lib/utils/yupValidations";
 import { useCustomToast } from "../../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../../lib/constants/routes";
+import { AxiosError, AxiosResponse } from "axios";
+
+interface IRegister {
+	firstName: string
+	lastName: string
+	email: string
+	phoneNumber: string
+	password: string
+}
 
 export default function Register() {
 	const [show, setShow] = useState(false);
@@ -21,11 +30,11 @@ export default function Register() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({ resolver: yupResolver(registerSchema) });
+	} = useForm<IRegister>({ resolver: yupResolver(registerSchema) });
 
-	const createUser = useMutation({
+	const createUser = useMutation<AxiosResponse, AxiosError, IRegister>({
 		mutationFn: (data) => {
-			return api.post("/register", data);
+			return api.post<IRegister>("/register", data);
 		},
 		onSuccess: () => {
 			showToast({
@@ -35,7 +44,7 @@ export default function Register() {
 			});
 			navigate(routes.auth.login);
 		},
-		onError: (error: any) => {
+		onError: (error) => {
 			showToast({
 				title: "Registration Failed",
 				description: `${error.response?.data || error?.message}`,
@@ -44,7 +53,7 @@ export default function Register() {
 		},
 	});
 
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: IRegister) => {
 		createUser.mutate(data);
 	};
 

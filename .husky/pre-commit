@@ -1,0 +1,8 @@
+# Run linting
+npm run lint -- --fix || {
+    echo "Linting failed. Please fix the errors and commit again."
+    exit 1
+}
+
+# Run formatting
+npm run format

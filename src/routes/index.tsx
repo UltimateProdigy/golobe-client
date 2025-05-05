@@ -11,9 +11,11 @@ const Register = lazy(() => import("../pages/auth/register/index"));
 const Hotels = lazy(() => import("../pages/hotels/index"));
 const HotelDetails = lazy(() => import("../pages/hotels/[id]"));
 const HotelListing = lazy(() => import("../pages/hotels/listing/index"));
+const HotelListingDetails = lazy(() => import("../pages/hotels/listing/[id]"))
 const Flights = lazy(() => import("../pages/flights/index"));
 const FlightDetails = lazy(() => import("../pages/flights/[id]"));
-const FlightListing = lazy(() => import("../pages/flights/listing/index"))
+const FlightListing = lazy(() => import("../pages/flights/listing/index"));
+const FlightListingDetails = lazy(() => import("../pages/flights/listing/[id]"))
 const Favourites = lazy(() => import("../pages/favourites"))
 const ForgotPassword = lazy(() => import('../pages/auth/forgot-password/index'))
 const Profile = lazy(() => import('../pages/profile/index'))
@@ -51,6 +53,11 @@ const golobe: RouteConfig[] = [
 		protected: true
 	},
 	{
+		path: routes.hotels.listing_details,
+		element: <HotelListingDetails />,
+		protected: true
+	},
+	{
 		path: routes.flights.index,
 		element: <Flights />,
 		protected: true
@@ -63,6 +70,11 @@ const golobe: RouteConfig[] = [
 	{
 		path: routes.flights.listing,
 		element: <FlightListing />,
+		protected: true
+	},
+	{
+		path: routes.flights.listing_details,
+		element: <FlightListingDetails />,
 		protected: true
 	},
 	{

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 type BaseFavouriteItem = {
-    id: number;
+    id: string;
     name: string;
     type: 'hotel' | 'flight';
     img: string;
@@ -31,9 +31,9 @@ type FavouritesStore = {
     favourites: FavouriteItem[];
     setFavourites: (favourites: FavouriteItem[]) => void;
     addFavourite: (item: FavouriteItem) => void;
-    removeFavourite: (id: number) => void;
+    removeFavourite: (id: string) => void;
     getFavouritesByType: (type: 'hotel' | 'flight') => FavouriteItem[];
-    isFavourite: (id: number) => boolean;
+    isFavourite: (id: string) => boolean;
 };
 
 const useFavouritesStore = create<FavouritesStore>()(

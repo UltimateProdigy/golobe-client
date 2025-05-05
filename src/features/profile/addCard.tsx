@@ -15,12 +15,7 @@ import {
 } from "@chakra-ui/react";
 import api from "../../api";
 import { useAuth } from "../../context/authContext";
-
-interface AddCardModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    onCardAdded: () => void;
-}
+import { AddCardModalProps } from "../../lib/types";
 
 const fields = [
     { label: "Card Number", key: "cardNumber", type: "number" },
@@ -32,19 +27,11 @@ const fields = [
 export default function AddCardModal({ isOpen, onClose, onCardAdded }: AddCardModalProps) {
     const { user } = useAuth();
     const toast = useToast();
-    const [formData, setFormData] = useState<any>({
-        cardNumber: '',
-        expDate: '',
-        cvc: '',
-        cardName: ''
-    });
+    const [formData, setFormData] = useState<object>({ cardNumber: '', expDate: '', cvc: '', cardName: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
-        setFormData({
-            ...formData,
-            [key]: e.target.value
-        });
+        setFormData({ ...formData, [key]: e.target.value });
     };
 
     const handleSubmit = async () => {
@@ -86,7 +73,7 @@ export default function AddCardModal({ isOpen, onClose, onCardAdded }: AddCardMo
                                 value={formData[field.key as keyof typeof formData]}
                                 onChange={(e) => handleInputChange(e, field.key)}
                                 placeholder={field.placeholder || `Enter ${field.label.toLowerCase()}`}
-                                type={field.type} 
+                                type={field.type}
                                 pb={2}
                             />
                         </FormControl>
@@ -106,7 +93,9 @@ export default function AddCardModal({ isOpen, onClose, onCardAdded }: AddCardMo
                     </Button>
                 </ModalFooter>
                 <p className="text-xs px-6 pb-4">
-                    By confirming your subscription, you allow The Outdoor Inn Crowd Limited to charge your card for this payment and future payments in accordance with their terms. You can always cancel your subscription.
+                    By confirming your subscription, you allow The Outdoor Inn Crowd
+                    Limited to charge your card for this payment and future payments
+                    in accordance with their terms. You can always cancel your subscription.
                 </p>
             </ModalContent>
         </Modal>

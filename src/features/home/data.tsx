@@ -1,6 +1,7 @@
 import { PlaneIcon, BedDoubleIcon } from "lucide-react";
-import { FlightComponent, HotelComponent } from "./tripForms";
+import FlightComponent from "../../components/flight/flight";
 import { routes } from "../../lib/constants/routes";
+import HotelComponent from "../../components/hotel/hotel";
 
 export const links = [
 	{
@@ -46,4 +47,23 @@ export const banners = [
 		cta: "Show Hotels",
 		route: routes.hotels.listing
 	},
+];
+
+export const citiesWithIataCodes = [
+	{ id: 1, name: "New York", iataCode: "NYC" },
+	{ id: 2, name: "London", iataCode: "LON" },
+	{ id: 3, name: "Tokyo", iataCode: "TYO" },
+	{ id: 4, name: "Paris", iataCode: "PAR" },
+	{ id: 5, name: "Dubai", iataCode: "DXB" },
+	{ id: 6, name: "Singapore", iataCode: "SIN" },
+	{ id: 7, name: "Los Angeles", iataCode: "LAX" },
+	{ id: 8, name: "Chicago", iataCode: "ORD" },
+	{ id: 9, name: "Hong Kong", iataCode: "HKG" },
+	{ id: 10, name: "Barcelona", iataCode: "BCN" },
+	{ id: 11, name: "Madrid", iataCode: "MAD" },
+	{ id: 12, name: "Berlin", iataCode: "BER" },
+	{ id: 13, name: "Rome", iataCode: "FCO" },
+	{ id: 14, name: "Sydney", iataCode: "SYD" },
+	{ id: 15, name: "Toronto", iataCode: "YYZ" },
+	{ id: 16, name: "Lagos", iataCode: "LOS" }
 ];
