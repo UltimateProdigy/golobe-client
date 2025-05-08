@@ -194,13 +194,11 @@ export default function FlightListing() {
                                             bg="#8DD3BB"
                                             onClick={() => navigate(`/flights/listing/${flight.id}`)}
                                         >
-                                            View Deals
+                                            Book Now
                                         </Button>
                                     </div>
                                 </div></>)}
                     </>
-
-
                 ))}
             </Filter>
             <Footer />

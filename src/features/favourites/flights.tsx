@@ -5,7 +5,7 @@ import { getFlightIcon } from "../../pages/flights/listing/data";
 import { useNavigate } from "react-router-dom";
 
 export default function FlightsFavourites() {
- const navigate = useNavigate()
+    const navigate = useNavigate()
     const { favourites, removeFavourite } = useFavouritesStore();
 
     const handleFavouriteClick = (flightId: string) => {
@@ -21,10 +21,11 @@ export default function FlightsFavourites() {
             </div>
         );
     }
+
     return (
         <div>
             {flightFavourites.map((data) => (
-                <div key={data._id} className="bg-white rounded-2xl p-6 m-4 shadow-md mx-8">
+                <div key={data.id} className="bg-white rounded-2xl p-6 m-4 shadow-md mx-8">
                     <div className="w-[60vw] flex gap-10 mb-6">
                         <img
                             src={getFlightIcon(data.name)}
@@ -63,11 +64,11 @@ export default function FlightsFavourites() {
                             border='1px'
                             borderColor='teal'
                             bg='white'
-                            onClick={() => handleFavouriteClick(data._id)}
+                            onClick={() => handleFavouriteClick(data.id)}
                         >
                             <Heart fill="red" color="red" />
                         </Button>
-                        <Button w='100%' bg='#8DD3BB' onClick={() => navigate(`/flights/listing/${data._id}`)}>View Deals</Button>
+                        <Button w='100%' bg='#8DD3BB' onClick={() => navigate(`/flights/listing/${data.id}`)}>View Deals</Button>
                     </div>
                 </div>
             ))}
