@@ -25,7 +25,7 @@ const HotelComponent: React.FC = () => {
 
     useEffect(() => {
         const options = citiesWithIataCodes.map(city => ({
-            value: city.name,
+            value: city.cityCode,
             label: `${city.name} (${city.iataCode})`
         }));
         setCityOptions(options);

@@ -198,7 +198,7 @@ export default function HotelListing() {
                                 />
                             </Button>
                             <Button w="100%" bg="#8DD3BB">
-                                View Place
+                                Book Now
                             </Button>
                         </div>
                     </div>
