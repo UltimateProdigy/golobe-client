@@ -1,9 +1,9 @@
 import "./App.css";
 import {
-	createBrowserRouter,
-	createRoutesFromElements,
-	Route,
-	RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
 } from "react-router-dom";
 import golobeRoutes from "./routes";
 import { routes } from "./lib/constants/routes";
@@ -13,24 +13,24 @@ import { useEffect } from "react";
 import { setupInterceptors } from "./api";
 
 const router = createBrowserRouter(
-	createRoutesFromElements(
-		<Route path={routes.index} element={<MainLayout />}>
-			{golobeRoutes()}
-		</Route>
-	)
+  createRoutesFromElements(
+    <Route path={routes.index} element={<MainLayout />}>
+      {golobeRoutes()}
+    </Route>,
+  ),
 );
 function App() {
-	const { getAccessToken, setAccessToken } = useCookie();
+  const { getAccessToken, setAccessToken } = useCookie();
 
-	useEffect(() => {
-		setupInterceptors({ getAccessToken, setAccessToken });
-	}, [getAccessToken, setAccessToken]);
+  useEffect(() => {
+    setupInterceptors({ getAccessToken, setAccessToken });
+  }, [getAccessToken, setAccessToken]);
 
-	return (
-		<>
-			<RouterProvider router={router} />
-		</>
-	);
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
